@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Expense } from '../types/Expense';
 
-export default function ExpenseForm() {
+type Props = {
+    onAdd: (expense: Omit<Expense, 'id' | 'date'>) => Promise<void>;
+  };
+
+export default function ExpenseForm({ onAdd }: Props) {
     const[form, setForm] = useState<Expense>({
         amount: 0,
-        date: '',
         description: '',
         category: '',
     });
@@ -13,12 +16,30 @@ export default function ExpenseForm() {
         const{ name, value } = e.target;
         setForm((prev) => ({
             ...prev,
-            [name]: name === 'amount' ? parseFloat(value) : value,
+            [name]: name === 'amount' 
+                ? value === '' ? '' : parseFloat(value) 
+                : value,
         }));
     }
 
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        try {
+            await onAdd(form);
+            alert("Gasto cadastrado com sucesso!")
+            setForm({
+                amount: 0,
+                description: '',
+                category: '',
+            });
+        } catch(error) {
+            console.error(error);
+        }
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <h2>Cadastrar Despesas</h2>
 
             <input 
@@ -28,14 +49,6 @@ export default function ExpenseForm() {
                 value={form.amount} 
                 onChange={handleChange} 
                 required 
-            />
-
-            <input
-                name="date"
-                type="datetime-local"
-                value={form.date}
-                onChange={handleChange}
-                required
             />
 
             <input
@@ -50,6 +63,7 @@ export default function ExpenseForm() {
                 type="text"
                 value={form.category}
                 onChange={handleChange}
+                required
             />
 
             <button type="submit">Cadastrar</button>
