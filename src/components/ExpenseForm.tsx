@@ -17,7 +17,7 @@ export default function ExpenseForm({ onAdd }: Props) {
         setForm((prev) => ({
             ...prev,
             [name]: name === 'amount' 
-                ? value === '' ? '' : parseFloat(value) 
+                ? value === '' ? 0 : parseFloat(value) 
                 : value,
         }));
     }
