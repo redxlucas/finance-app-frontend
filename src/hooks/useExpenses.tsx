@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Expense } from '../types/Expense';
+import { Expense } from '../types/transactions';
 import api from '../services/api'
 
 export function useExpenses() {

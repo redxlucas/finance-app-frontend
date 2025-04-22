@@ -1,4 +1,5 @@
 import React from 'react'
+import { Input as ShadCNInput } from '@/components/ui/input'
 
 type Props = { 
     name: string;
@@ -11,7 +12,7 @@ type Props = {
 
 export default function Input({ name, type="text", value, placeholder, required }: Props) {
     return (
-        <input
+        <ShadCNInput
             name={name}
             type={type}
             value={value}

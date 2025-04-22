@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from '../ui/button';
 
 type Props = {
     title: string;
@@ -11,14 +12,14 @@ type Props = {
 export default function Form({ title, onSubmit, children, submitLabel = 'Salvar', className }: Props) {
     return (
         <form onSubmit={onSubmit} className={className}>
-            {title && <h2>{title}</h2>}
+            {title && <h2 className="text-lg font-semibold">{title}</h2>}
 
             {children}
 
             {submitLabel && (
-                <button type="submit">
+                <Button>
                     {submitLabel}
-                </button>
+                </ Button>
             )}
         </form>
     );

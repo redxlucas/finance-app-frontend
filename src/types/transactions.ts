@@ -1,4 +1,4 @@
-export type ExpenseType = {
+export type Expense = {
     id: number;
     amount: number;
     date: string;
@@ -6,4 +6,10 @@ export type ExpenseType = {
     category: string;
 }
 
-export type ExpenseInput = Omit<ExpenseType, 'id' | 'date'>;
+export interface Income {
+    id: number;
+    amount: number;
+    recurrence: string;
+    category: string;
+    description: string;
+}
