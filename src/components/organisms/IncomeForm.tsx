@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form as ShadForm,
   FormField,
@@ -8,15 +9,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Income } from "@/types/transactions";
 import Form from "../atoms/Form";
+import { incomeSchema, IncomeInput } from "@/schemas/incomeSchema";
 
 type Props = {
-  onAdd: (data: Income) => Promise<void>;
+  onAdd: (data: IncomeInput) => Promise<void>;
 };
 
 export default function IncomeForm({ onAdd }: Props) {
-  const form = useForm<Income>({
+  const form = useForm<IncomeInput>({
+    resolver: zodResolver(incomeSchema),
     defaultValues: {
       amount: 0,
       recurrence: "",
@@ -25,7 +27,7 @@ export default function IncomeForm({ onAdd }: Props) {
     },
   });
 
-  async function handleSubmit(data: Income) {
+  async function handleSubmit(data: IncomeInput) {
     try {
       await onAdd(data);
       alert("Gasto cadastrado com sucesso!");
@@ -41,13 +43,6 @@ export default function IncomeForm({ onAdd }: Props) {
         <FormField
           control={form.control}
           name="amount"
-          rules={{
-            required: "O valor é obrigatório.",
-            min: {
-              value: 0.01,
-              message: "O valor deve ser maior que zero."
-            }
-          }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Valor</FormLabel>
@@ -62,7 +57,6 @@ export default function IncomeForm({ onAdd }: Props) {
         <FormField
           control={form.control}
           name="recurrence"
-          rules={{ required: true}}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Recorrência de Ganho</FormLabel>
@@ -77,7 +71,6 @@ export default function IncomeForm({ onAdd }: Props) {
         <FormField
           control={form.control}
           name="description"
-          rules={{ required: "Este campo é obrigatório" }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Descrição</FormLabel>
@@ -92,7 +85,6 @@ export default function IncomeForm({ onAdd }: Props) {
         <FormField
           control={form.control}
           name="category"
-          rules={{ required: "Este campo é obrigatório" }}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Categoria</FormLabel>
