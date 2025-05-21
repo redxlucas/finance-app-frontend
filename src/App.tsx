@@ -1,20 +1,22 @@
-import ExpenseForm from "./components/ExpenseForm"
-import ExpenseList from './components/ExpenseList';
-import { useExpenses } from './hooks/useExpenses';
+import { Route, Routes } from "react-router-dom";
+import ExpensesPage from "./components/pages/Expenses";
+import IncomesPage from "@/components/pages/Incomes";
+import Dashboard from "./components/pages/Dashboard";
+import Layout from "./components/atoms/Layout";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 function App() {
-  const { expenses, addExpense, loading } = useExpenses();
-
-  return (
-    <>
-      <div>
-        <h1>Jabuti - Suas Finanças</h1>
-        <ExpenseForm onAdd={addExpense}/>
-        <hr />
-        {loading ? <p>Carregando gastos...</p> : <ExpenseList expenses={expenses} />}
-      </div>
-    </>
-  )
+    return (
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="expenses" element={<ExpensesPage />} />
+                    <Route path="incomes" element={<IncomesPage />} />
+                </Route>
+            </Routes>
+        </ThemeProvider>
+    );
 }
 
-export default App
+export default App;
