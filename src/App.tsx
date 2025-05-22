@@ -13,6 +13,8 @@ function App() {
                     <Route index element={<Dashboard />} />
                     <Route path="expenses" element={<ExpensesPage />} />
                     <Route path="incomes" element={<IncomesPage />} />
+                    <Route path="goals" element={<></>} />
+                    <Route path="settings" element={<></>} />
                 </Route>
             </Routes>
         </ThemeProvider>

@@ -30,6 +30,7 @@ export function ExpensesTable({
                     <TableRow className="border-border">
                         <TableHead>Valor (R$)</TableHead>
                         <TableHead>Descrição</TableHead>
+                        <TableHead>Tipo</TableHead>
                         <TableHead>Categoria</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -41,6 +42,13 @@ export function ExpensesTable({
                         >
                             <TableCell>{expense.amount.toFixed(2)}</TableCell>
                             <TableCell>{expense.description}</TableCell>
+                            <TableCell>
+                                {/* Atualizar isso para lidar com o i18n  */}
+                                <span>
+                                    {expense.type.charAt(0).toUpperCase() +
+                                        expense.type.slice(1).toLowerCase()}
+                                </span>
+                            </TableCell>
                             <TableCell>
                                 {expense.category?.name ?? "-"}
                             </TableCell>

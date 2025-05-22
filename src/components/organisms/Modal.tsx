@@ -31,9 +31,7 @@ export const Modal = ({
 
             <DialogContent className="bg-secondary border-border">
                 <DialogHeader>
-                    <DialogTitle className="text-primary font-bold">
-                        {title}
-                    </DialogTitle>
+                    <DialogTitle className="font-bold">{title}</DialogTitle>
                     {description && (
                         <DialogDescription>{description}</DialogDescription>
                     )}
