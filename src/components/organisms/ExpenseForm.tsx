@@ -60,24 +60,6 @@ export default function ExpenseForm({ onAdd }: Props) {
             >
                 <FormField
                     control={form.control}
-                    name="amount"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Valor</FormLabel>
-                            <FormControl>
-                                <Input
-                                    type="number"
-                                    placeholder="Valor"
-                                    {...field}
-                                />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
                     name="description"
                     render={({ field }) => (
                         <FormItem>
@@ -86,6 +68,23 @@ export default function ExpenseForm({ onAdd }: Props) {
                                 <Input
                                     type="text"
                                     placeholder="Descrição"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="amount"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Valor</FormLabel>
+                            <FormControl>
+                                <Input
+                                    type="number"
+                                    placeholder="Valor"
                                     {...field}
                                 />
                             </FormControl>

@@ -1,5 +1,4 @@
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
-import Aside from "./Aside";
 import { Outlet } from "react-router-dom";
 import { CustomSidebar } from "./CustomSidebar";
 

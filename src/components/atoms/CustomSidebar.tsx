@@ -1,21 +1,13 @@
 import React from "react";
 import {
-    ArrowUpCircleIcon,
-    BarChart3,
-    Bell,
-    Calendar,
     ChevronUp,
-    CreditCard,
-    Home,
-    Inbox,
+    CirclePlus,
     LayoutDashboard,
-    PieChart,
     Receipt,
-    Search,
     Settings,
     Target,
+    Turtle,
     User2,
-    Wallet,
 } from "lucide-react";
 import {
     Sidebar,
@@ -24,7 +16,6 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
-    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
@@ -37,6 +28,15 @@ import {
 } from "../ui/dropdown-menu";
 import { ModeToggle } from "./ModeToggle";
 import { Link, useLocation } from "react-router-dom";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "../ui/tooltip";
+import { useExpenses } from "@/hooks/useExpenses";
+import { Modal } from "../organisms/Modal";
+import ExpenseForm from "../organisms/ExpenseForm";
 
 const items = [
     {
@@ -77,17 +77,73 @@ const items = [
 ];
 
 export function CustomSidebar() {
+    const { expenses, addExpense } = useExpenses();
+
     const location = useLocation();
 
     return (
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel className="text-lg mb-4 mt-2 text-primary">
-                        Jabuti
+                    <SidebarGroupLabel className="mb-4 mt-2 text-primary flex items-center justify-center gap-2">
+                        <Turtle className="!w-6 !h-6" />
+                        <span className="text-lg">Jabuti</span>
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
+                            <SidebarMenuItem className="text-sidebar-foreground bg-primary rounded">
+                                <TooltipProvider
+                                    delayDuration={0}
+                                    skipDelayDuration={100}
+                                >
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <Modal
+                                                trigger={
+                                                    // <SidebarMenuButton className="py-5 hover:bg-transparent cursor-pointer">
+                                                    <DropdownMenu>
+                                                        <DropdownMenuTrigger
+                                                            asChild
+                                                        >
+                                                            <SidebarMenuButton className="py-5 hover:bg-transparent cursor-pointer">
+                                                                <CirclePlus />
+                                                                Adicionar
+                                                            </SidebarMenuButton>
+                                                        </DropdownMenuTrigger>
+                                                        <DropdownMenuContent
+                                                            side="right"
+                                                            className="w-[--radix-popper-anchor-width]"
+                                                        >
+                                                            <DropdownMenuItem>
+                                                                <span>
+                                                                    Despesa
+                                                                </span>
+                                                            </DropdownMenuItem>
+                                                            <DropdownMenuItem>
+                                                                <span>
+                                                                    Ganho
+                                                                </span>
+                                                            </DropdownMenuItem>
+                                                            <DropdownMenuItem>
+                                                                <span>
+                                                                    Meta
+                                                                </span>
+                                                            </DropdownMenuItem>
+                                                        </DropdownMenuContent>
+                                                    </DropdownMenu>
+                                                }
+                                                title="Nova Transação"
+                                                description="Cadastrar uma nova transação"
+                                            >
+                                                <ExpenseForm
+                                                    onAdd={addExpense}
+                                                />
+                                            </Modal>
+                                        </TooltipTrigger>
+                                        <TooltipContent side="top"></TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
+                            </SidebarMenuItem>
                             {items.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton
@@ -130,13 +186,7 @@ export function CustomSidebar() {
                                 className="w-[--radix-popper-anchor-width]"
                             >
                                 <DropdownMenuItem>
-                                    <span>Account</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <span>Billing</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <span>Sign out</span>
+                                    <span>Sair</span>
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>

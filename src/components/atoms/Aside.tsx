@@ -1,5 +1,6 @@
 import { Home, DollarSign, TrendingUp, Turtle } from "lucide-react";
 import { ModeToggle } from "./ModeToggle";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Aside = () => {
     const links = [
@@ -34,6 +35,7 @@ const Aside = () => {
                             {link.label}
                         </a>
                     ))}
+                    <ThemeToggle></ThemeToggle>
                     <ModeToggle></ModeToggle>
                 </nav>
             </div>
