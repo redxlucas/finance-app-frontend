@@ -27,7 +27,7 @@ import {
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { ModeToggle } from "./ModeToggle";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     Tooltip,
     TooltipContent,
@@ -37,6 +37,8 @@ import {
 import { useExpenses } from "@/hooks/useExpenses";
 import { Modal } from "../organisms/Modal";
 import ExpenseForm from "../organisms/ExpenseForm";
+import { AuthService } from "@/services/authService";
+import { useAuth } from "@/contexts/AuthContext";
 
 const items = [
     {
@@ -80,6 +82,13 @@ export function CustomSidebar() {
     const { expenses, addExpense } = useExpenses();
 
     const location = useLocation();
+    const { user } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        AuthService.logout();
+        navigate("/login");
+    };
 
     return (
         <Sidebar>
@@ -177,15 +186,15 @@ export function CustomSidebar() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <SidebarMenuButton>
-                                    <User2 /> Username
+                                    <User2 /> {user?.login}
                                     <ChevronUp className="ml-auto" />
                                 </SidebarMenuButton>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent
-                                side="top"
+                                side="right"
                                 className="w-[--radix-popper-anchor-width]"
                             >
-                                <DropdownMenuItem>
+                                <DropdownMenuItem onSelect={handleLogout}>
                                     <span>Sair</span>
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
