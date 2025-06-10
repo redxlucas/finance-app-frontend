@@ -2,6 +2,7 @@ import api from "@/services/api";
 import { LoginInput } from "@/schemas/loginSchema";
 import { jwtDecode } from "jwt-decode";
 import { RegisterInput } from "@/schemas/registerSchema";
+import axios from "axios";
 const TOKEN_KEY = "token";
 
 interface JwtPayload {
@@ -37,9 +38,18 @@ export async function loginUser(data: LoginInput): Promise<string> {
 
         localStorage.setItem(TOKEN_KEY, token);
         return token;
-    } catch (error: any) {
-        const message = error.response?.data?.message || "Erro ao fazer login.";
-        throw new Error(message);
+    } catch (err) {
+        if (axios.isAxiosError(err)) {
+            const status = err.response?.status;
+            if (status === 403) {
+                const error = new Error(
+                    "Usuário ou senha inválidos. Por favor, tente novamente"
+                );
+                (error as any).status = 403;
+                throw error;
+            }
+        }
+        throw err;
     }
 }
 

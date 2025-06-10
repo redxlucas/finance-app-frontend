@@ -13,6 +13,7 @@ export default function LoginPage() {
     const navigate = useNavigate();
     const { login, token } = useAuth();
     const [openError, setOpenError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     async function handleLogin(data: LoginInput) {
         try {
@@ -20,7 +21,12 @@ export default function LoginPage() {
             login(token);
             navigate("/");
         } catch (err) {
-            alert((err as Error).message);
+            const msg =
+                err instanceof Error
+                    ? err.message
+                    : "Usuário ou senha inválidos. Por favor, tente novamente.";
+            setErrorMessage(msg);
+            setOpenError(true);
         }
     }
 
@@ -29,6 +35,9 @@ export default function LoginPage() {
             navigate("/");
         } else {
             setOpenError(true);
+            setErrorMessage(
+                "É necessário se autenticar para acessar o sistema"
+            );
         }
     };
 
@@ -50,9 +59,7 @@ export default function LoginPage() {
                 open={openError}
                 onOpenChange={setOpenError}
                 title={"Acesso negado"}
-                description={
-                    "É necessário se autenticar para acessar o sistema"
-                }
+                description={errorMessage}
             />
             <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:px-0 sm:max-w-md md:max-w-lg lg:w-[70%] xl:w-[60%] 2xl:w-[50%]">
                 <div className="flex flex-col space-y-2 text-center">
