@@ -31,14 +31,16 @@ export default function RegisterForm({
     className,
     ...props
 }: UserAuthFormProps) {
-    const form = useForm<RegisterFormInput>({
-        resolver: zodResolver(registerFormSchema),
+    const form = useForm<RegisterInput>({
+        resolver: zodResolver(registerSchema),
         defaultValues: {
             completeName: "",
             login: "",
             password: "",
             confirmPassword: "",
             receiveEmails: false,
+            languagePreference: "PTBR",
+            themePreference: "DARK",
         },
     });
 

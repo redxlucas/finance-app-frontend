@@ -23,6 +23,5 @@ export const registerSchema = registerFormSchema
         path: ["confirmPassword"],
     });
 
-// Tipos
 export type RegisterFormInput = z.infer<typeof registerFormSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;
