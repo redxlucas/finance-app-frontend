@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { LoginInput, loginSchema } from "@/schemas/loginSchema";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { PasswordInput } from "../atoms/PasswordInput";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
     onAdd: (data: LoginInput) => Promise<void>;
@@ -51,7 +52,7 @@ export default function LoginForm({
                     title=""
                     className="space-y-4"
                 >
-                    <div className="grid gap-3">
+                    <div className="grid gap-4">
                         <FormField
                             control={form.control}
                             name="login"
@@ -76,7 +77,7 @@ export default function LoginForm({
                                 <FormItem>
                                     <FormLabel>Senha</FormLabel>
                                     <FormControl>
-                                        <Input
+                                        <PasswordInput
                                             type="password"
                                             placeholder="Senha"
                                             {...field}

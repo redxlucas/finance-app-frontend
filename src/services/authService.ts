@@ -1,6 +1,7 @@
 import api from "@/services/api";
 import { LoginInput } from "@/schemas/loginSchema";
 import { jwtDecode } from "jwt-decode";
+import { RegisterInput } from "@/schemas/registerSchema";
 const TOKEN_KEY = "token";
 
 interface JwtPayload {
@@ -38,6 +39,15 @@ export async function loginUser(data: LoginInput): Promise<string> {
         return token;
     } catch (error: any) {
         const message = error.response?.data?.message || "Erro ao fazer login.";
+        throw new Error(message);
+    }
+}
+
+export async function registerUser(data: RegisterInput): Promise<void> {
+    try {
+        await api.post("/auth/register", data);
+    } catch (error: any) {
+        const message = error.response.data;
         throw new Error(message);
     }
 }

@@ -1,16 +1,18 @@
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
-import { UserAuthForm } from "@/components/organisms/UserAuthForm";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronLeft, Turtle } from "lucide-react";
 import LoginForm from "../organisms/LoginForm";
 import { LoginInput } from "@/schemas/loginSchema";
 import { loginUser } from "@/services/authService";
 import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
+import { AlertDialogBox } from "../organisms/AlertDialogBox";
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { login, token } = useAuth();
+    const [openError, setOpenError] = useState(false);
 
     async function handleLogin(data: LoginInput) {
         try {
@@ -22,21 +24,37 @@ export default function LoginPage() {
         }
     }
 
+    const handleBack = () => {
+        if (token && token !== "null") {
+            navigate("/");
+        } else {
+            setOpenError(true);
+        }
+    };
+
     return (
-        <div className="flex h-screen w-screen flex-col items-center justify-center">
-            <Link
-                to="/"
+        <div className="flex min-h-screen w-full flex-col items-center justify-center px-4 md:px-8 lg:px-16">
+            <Button
+                onClick={handleBack}
                 className={cn(
                     buttonVariants({ variant: "ghost" }),
-                    "absolute left-4 top-4 md:left-8 md:top-8"
+                    "absolute left-4 top-4 md:left-8 md:top-8 bg-transparent text-secondary-foreground"
                 )}
             >
                 <>
                     <ChevronLeft className="mr-2 h-4 w-4" />
                     Voltar
                 </>
-            </Link>
-            <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            </Button>
+            <AlertDialogBox
+                open={openError}
+                onOpenChange={setOpenError}
+                title={"Acesso negado"}
+                description={
+                    "É necessário se autenticar para acessar o sistema"
+                }
+            />
+            <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:px-0 sm:max-w-md md:max-w-lg lg:w-[70%] xl:w-[60%] 2xl:w-[50%]">
                 <div className="flex flex-col space-y-2 text-center">
                     <Turtle className="mx-auto h-8 w-8 text-primary" />
                     <h1 className="text-2xl font-semibold tracking-tight">
