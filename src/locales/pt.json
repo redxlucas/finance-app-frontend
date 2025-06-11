@@ -1,0 +1,62 @@
+{
+    "welcomeMessage": "Bem-vindo, {{user}}!",
+    "languages": {
+        "pt": "Português",
+        "en": "Inglês"
+    },
+    "sidebar": {
+        "new": "Novo",
+        "dashboard": "Dashboard",
+        "transactions": "Transações",
+        "goals": "Metas",
+        "settings": "Configurações"
+    },
+    "settings": {
+        "title": "Configurações",
+        "description": "Gerencie suas configurações de conta e defina suas preferências de email"
+    },
+    "auth": {
+        "email": "Email",
+        "password": "Senha",
+        "login": {
+            "title": "Bem-vindo de volta",
+            "description": "Insira seu email e senha para entrar no Jabuti",
+            "emailPlaceholder": "Email",
+            "passwordPlaceholder": "Senha",
+            "submit": "Entrar",
+            "link": "Não possui uma conta? Registre-se aqui"
+        },
+        "register": {
+            "title": "Cadastre-se aqui",
+            "description": "Cadastre-se para acessar o Jabuti",
+            "label": {
+                "completeName": "Nome Completo",
+                "confirmPassword": "Digite sua senha novamente",
+                "receiveEmail": "Receber emails sobre novidades"
+            },
+            "placeholder": {
+                "completeName": "Seu nome completo",
+                "email": "exemplo@email.com",
+                "password": "Crie uma senha segura",
+                "confirmPassword": "Repita a senha",
+                "receiveEmail": "Fique por dentro de novos recursos e atualizações do Jabuti."
+            },
+            "submit": "Criar Conta",
+            "link": "Já possui uma conta? Entre aqui"
+        },
+        "error": {
+            "accessDenied": {
+                "title": "Acesso Negado",
+                "description": "Usuário ou senha inválidos. Por favor, tente novamente"
+            },
+            "loginRequired": {
+                "title": "Login Requerido",
+                "description": "É necessário se autenticar para acessar o sistema"
+            },
+            "emailAlreadyExists": {
+                "title": "Email já Cadastrado",
+                "description": "O email informado já está em uso. Tente fazer login ou utilize outro email."
+            }
+        }
+    }
+}

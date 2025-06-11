@@ -1,0 +1,62 @@
+{
+    "welcomeMessage": "Welcome, {{user}}",
+    "languages": {
+        "pt": "Portuguese",
+        "en": "English"
+    },
+    "sidebar": {
+        "new": "New",
+        "dashboard": "Dashboard",
+        "transactions": "Transactions",
+        "goals": "Goals",
+        "settings": "Settings"
+    },
+    "settings": {
+        "title": "Settings",
+        "description": "Manage your account settings and set email preferences"
+    },
+    "auth": {
+        "email": "Email",
+        "password": "Senha",
+        "login": {
+            "title": "Welcome back",
+            "description": "Enter your email and password to log into Jabuti",
+            "emailPlaceholder": "Email",
+            "passwordPlaceholder": "Password",
+            "submit": "Sign in",
+            "link": "Don't have an account? Register here"
+        },
+        "register": {
+            "title": "Register here",
+            "description": "Sign up to access Jabuti",
+            "label": {
+                "completeName": "Full Name",
+                "confirmPassword": "Re-enter your password",
+                "receiveEmail": "Receive emails about news"
+            },
+            "placeholder": {
+                "completeName": "Your full name",
+                "email": "example@email.com",
+                "password": "Create a strong password",
+                "confirmPassword": "Repeat the password",
+                "receiveEmail": "Stay informed about new features and updates of Jabuti."
+            },
+            "submit": "Create Account",
+            "link": "Already have an account? Log in here"
+        },
+        "error": {
+            "accessDenied": {
+                "title": "Access Denied",
+                "description": "Invalid username or password. Please try again."
+            },
+            "loginRequired": {
+                "title": "Login Required",
+                "description": "You must be authenticated to access the system."
+            },
+            "emailAlreadyExists": {
+                "title": "Email Already Registered",
+                "description": "The provided email is already in use. Try logging in or use a different email."
+            }
+        }
+    }
+}
