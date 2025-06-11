@@ -1,5 +1,4 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { useAuthUser } from "@/hooks/useAuthUser";
 
 export default function Dashboard() {
     const { user } = useAuth();

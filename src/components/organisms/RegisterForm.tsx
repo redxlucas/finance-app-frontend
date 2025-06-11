@@ -10,13 +10,11 @@ import {
     FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LoginInput, loginSchema } from "@/schemas/loginSchema";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Switch } from "../ui/switch";
 import {
     RegisterFormInput,
-    registerFormSchema,
     RegisterInput,
     registerSchema,
 } from "@/schemas/registerSchema";

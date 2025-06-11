@@ -1,4 +1,3 @@
-import React from "react";
 import {
     ChevronUp,
     CirclePlus,
@@ -79,7 +78,7 @@ const items = [
 ];
 
 export function CustomSidebar() {
-    const { expenses, addExpense } = useExpenses();
+    const { addExpense } = useExpenses();
 
     const location = useLocation();
     const { user } = useAuth();
