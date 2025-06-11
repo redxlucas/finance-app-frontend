@@ -21,6 +21,7 @@ import {
     registerSchema,
 } from "@/schemas/registerSchema";
 import { PasswordInput } from "../atoms/PasswordInput";
+import { useTranslation } from "react-i18next";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
     onAdd: (data: RegisterInput) => Promise<void>;
@@ -31,6 +32,8 @@ export default function RegisterForm({
     className,
     ...props
 }: UserAuthFormProps) {
+    const { t } = useTranslation();
+
     const form = useForm<RegisterInput>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
@@ -72,11 +75,15 @@ export default function RegisterForm({
                             name="completeName"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Nome Completo</FormLabel>
+                                    <FormLabel>
+                                        {t("auth.register.label.completeName")}
+                                    </FormLabel>
                                     <FormControl>
                                         <Input
                                             type="text"
-                                            placeholder="Seu Nome Completo"
+                                            placeholder={t(
+                                                "auth.register.placeholder.completeName"
+                                            )}
                                             {...field}
                                         />
                                     </FormControl>
@@ -89,11 +96,13 @@ export default function RegisterForm({
                             name="login"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>E-mail</FormLabel>
+                                    <FormLabel>{t("auth.email")}</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="email"
-                                            placeholder="exemplo@email.com"
+                                            placeholder={t(
+                                                "auth.register.placeholder.email"
+                                            )}
                                             {...field}
                                         />
                                     </FormControl>
@@ -108,11 +117,15 @@ export default function RegisterForm({
                                     name="password"
                                     render={({ field }) => (
                                         <FormItem>
-                                            <FormLabel>Senha</FormLabel>
+                                            <FormLabel>
+                                                {t("auth.password")}
+                                            </FormLabel>
                                             <FormControl>
                                                 <PasswordInput
                                                     type="password"
-                                                    placeholder="Crie uma senha segura"
+                                                    placeholder={t(
+                                                        "auth.register.placeholder.password"
+                                                    )}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -128,14 +141,16 @@ export default function RegisterForm({
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
-                                                Digite sua senha novamente
+                                                {t(
+                                                    "auth.register.label.confirmPassword"
+                                                )}
                                             </FormLabel>
                                             <FormControl>
                                                 <PasswordInput
                                                     type="password"
-                                                    placeholder={
-                                                        "Repita a senha"
-                                                    }
+                                                    placeholder={t(
+                                                        "auth.register.placeholder.confirmPassword"
+                                                    )}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -152,11 +167,14 @@ export default function RegisterForm({
                                 <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                                     <div className="space-y-0.5">
                                         <FormLabel>
-                                            Receber e-mails sobre novidades
+                                            {t(
+                                                "auth.register.label.receiveEmail"
+                                            )}
                                         </FormLabel>
                                         <FormDescription>
-                                            Fique por dentro de novos recursos e
-                                            produtos e atualizações.
+                                            {t(
+                                                "auth.register.placeholder.receiveEmail"
+                                            )}
                                         </FormDescription>
                                     </div>
                                     <FormControl>
@@ -171,7 +189,7 @@ export default function RegisterForm({
                             )}
                         />
                         <>
-                            <Button>Criar Conta</Button>
+                            <Button>{t("auth.register.submit")}</Button>
                         </>
                     </div>
                 </form>

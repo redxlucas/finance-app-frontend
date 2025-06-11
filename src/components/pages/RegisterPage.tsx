@@ -7,18 +7,32 @@ import { registerUser } from "@/services/authService";
 import { RegisterInput } from "@/schemas/registerSchema";
 import { useState } from "react";
 import { AlertDialogBox } from "../organisms/AlertDialogBox";
+import { useTranslation } from "react-i18next";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "../ui/select";
+import i18n from "@/lib/i18n";
 
 export default function RegisterPage() {
     const navigate = useNavigate();
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [errorTitle, setErrorTitle] = useState("");
+    const [errorDescription, setErrorDescription] = useState("");
     const [openDialog, setOpenDialog] = useState(false);
+    const { t } = useTranslation();
 
     async function handleRegister(data: RegisterInput) {
         try {
             await registerUser(data);
-            navigate("/login");
+            navigate("/");
         } catch (error) {
-            setErrorMessage((error as Error).message);
+            const err = (error as Error).message;
+
+            setErrorTitle(t(`${err}.title`));
+            setErrorDescription(t(`${err}.description`));
             setOpenDialog(true);
         }
     }
@@ -26,7 +40,7 @@ export default function RegisterPage() {
     return (
         <div className="flex min-h-screen w-full flex-col items-center justify-center px-4 md:px-8 lg:px-16">
             <Link
-                to="/"
+                to="/login"
                 className={cn(
                     buttonVariants({ variant: "ghost" }),
                     "absolute left-4 top-4 md:left-8 md:top-8"
@@ -37,15 +51,31 @@ export default function RegisterPage() {
                     Voltar
                 </>
             </Link>
+            <Select
+                value={i18n.language}
+                onValueChange={(value) => i18n.changeLanguage(value)}
+            >
+                <SelectTrigger
+                    className={cn(
+                        buttonVariants({ variant: "ghost" }),
+                        "absolute right-4 top-4 md:right-8 md:top-8 bg-transparent text-secondary-foreground w-[140px] h-10 text-sm"
+                    )}
+                >
+                    <SelectValue placeholder="Idioma" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="pt">{t("languages.pt")}</SelectItem>
+                    <SelectItem value="en">{t("languages.en")}</SelectItem>
+                </SelectContent>
+            </Select>
             <div className="mx-auto flex w-full flex-col justify-center space-y-4 my-8 sm:px-0 sm:max-w-md md:max-w-lg lg:w-[70%] xl:w-[60%] 2xl:w-[50%]">
                 <div className="flex flex-col space-y-2 text-center">
                     <Turtle className="mx-auto h-8 w-8 text-primary" />
                     <h1 className="text-2xl font-semibold tracking-tight">
-                        {" "}
-                        Cadastre-se aqui
+                        {t("auth.register.title")}
                     </h1>
                     <p className="text-sm text-muted-foreground">
-                        Cadastre-se para acessar o Jabuti
+                        {t("auth.register.description")}
                     </p>
                 </div>
                 {/* <UserRegisterForm /> */}
@@ -55,15 +85,15 @@ export default function RegisterPage() {
                         to="/login"
                         className="hover:text-brand underline underline-offset-4"
                     >
-                        Já possui uma conta? Entre aqui
+                        {t("auth.register.link")}
                     </Link>
                 </p>
             </div>
             <AlertDialogBox
                 open={openDialog}
                 onOpenChange={setOpenDialog}
-                title="Erro ao se registrar"
-                description={errorMessage}
+                title={errorTitle}
+                description={errorDescription}
             />
         </div>
     );

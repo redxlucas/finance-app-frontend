@@ -42,10 +42,10 @@ export async function loginUser(data: LoginInput): Promise<string> {
         if (axios.isAxiosError(err)) {
             const status = err.response?.status;
             if (status === 403) {
-                const error = new Error(
-                    "Usuário ou senha inválidos. Por favor, tente novamente"
-                );
+                const error = new Error("auth.error.accessDenied.title");
                 (error as any).status = 403;
+                (error as any).description =
+                    "auth.error.accessDenied.description";
                 throw error;
             }
         }

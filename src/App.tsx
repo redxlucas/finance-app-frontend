@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
 import { PrivateRoute } from "./components/atoms/PrivateRoute";
+import SettingsPage from "./components/pages/SettingsPage";
 
 function App() {
     return (
@@ -28,7 +29,7 @@ function App() {
                     <Route path="expenses" element={<ExpensesPage />} />
                     <Route path="incomes" element={<IncomesPage />} />
                     <Route path="goals" element={<></>} />
-                    <Route path="settings" element={<></>} />
+                    <Route path="settings" element={<SettingsPage />} />
                 </Route>
             </Routes>
         </ThemeProvider>

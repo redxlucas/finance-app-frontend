@@ -13,6 +13,7 @@ import { LoginInput, loginSchema } from "@/schemas/loginSchema";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { PasswordInput } from "../atoms/PasswordInput";
+import { useTranslation } from "react-i18next";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
     onAdd: (data: LoginInput) => Promise<void>;
@@ -23,6 +24,7 @@ export default function LoginForm({
     className,
     ...props
 }: UserAuthFormProps) {
+    const { t } = useTranslation();
     const form = useForm<LoginInput>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -58,11 +60,13 @@ export default function LoginForm({
                             name="login"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>E-mail</FormLabel>
+                                    <FormLabel>{t("auth.email")}</FormLabel>
                                     <FormControl>
                                         <Input
                                             type="email"
-                                            placeholder="E-mail"
+                                            placeholder={t(
+                                                "auth.login.emailPlaceholder"
+                                            )}
                                             {...field}
                                         />
                                     </FormControl>
@@ -75,11 +79,13 @@ export default function LoginForm({
                             name="password"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Senha</FormLabel>
+                                    <FormLabel>{t("auth.password")}</FormLabel>
                                     <FormControl>
                                         <PasswordInput
                                             type="password"
-                                            placeholder="Senha"
+                                            placeholder={t(
+                                                "auth.login.passwordPlaceholder"
+                                            )}
                                             {...field}
                                         />
                                     </FormControl>

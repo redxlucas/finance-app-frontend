@@ -1,13 +1,25 @@
 import React from "react";
 import {
+    Banknote,
+    BanknoteArrowDownIcon,
+    BanknoteArrowUpIcon,
+    BanknoteIcon,
     ChevronUp,
     CirclePlus,
+    HandCoinsIcon,
     LayoutDashboard,
     Receipt,
+    ReceiptIcon,
+    Rocket,
+    RocketIcon,
     Settings,
+    TagIcon,
     Target,
+    TrendingDownIcon,
+    TrendingUpIcon,
     Turtle,
     User2,
+    Wallet,
 } from "lucide-react";
 import {
     Sidebar,
@@ -24,6 +36,8 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { ModeToggle } from "./ModeToggle";
@@ -39,20 +53,22 @@ import { Modal } from "../organisms/Modal";
 import ExpenseForm from "../organisms/ExpenseForm";
 import { AuthService } from "@/services/authService";
 import { useAuth } from "@/contexts/AuthContext";
+import { DropdownMenuGroup } from "@radix-ui/react-dropdown-menu";
+import { useTranslation } from "react-i18next";
 
 const items = [
     {
-        title: "Dashboard",
+        title: "sidebar.dashboard",
         url: "/",
         icon: LayoutDashboard,
     },
     {
-        title: "Transações",
+        title: "sidebar.transactions",
         url: "/expenses",
         icon: Receipt,
     },
     {
-        title: "Metas Financeiras",
+        title: "sidebar.goals",
         url: "/goals",
         icon: Target,
     },
@@ -72,7 +88,7 @@ const items = [
     //     icon: Calendar,
     // },
     {
-        title: "Configurações",
+        title: "sidebar.settings",
         url: "/settings",
         icon: Settings,
     },
@@ -83,6 +99,7 @@ export function CustomSidebar() {
 
     const location = useLocation();
     const { user } = useAuth();
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -116,27 +133,42 @@ export function CustomSidebar() {
                                                         >
                                                             <SidebarMenuButton className="py-5 hover:bg-transparent cursor-pointer">
                                                                 <CirclePlus />
-                                                                Adicionar
+                                                                {t(
+                                                                    "sidebar.new"
+                                                                )}
                                                             </SidebarMenuButton>
                                                         </DropdownMenuTrigger>
                                                         <DropdownMenuContent
                                                             side="right"
                                                             className="w-[--radix-popper-anchor-width]"
+                                                            align="start"
                                                         >
-                                                            <DropdownMenuItem>
-                                                                <span>
+                                                            <DropdownMenuLabel>
+                                                                {t(
+                                                                    "sidebar.transactions"
+                                                                )}
+                                                            </DropdownMenuLabel>
+                                                            <DropdownMenuGroup>
+                                                                <DropdownMenuItem>
+                                                                    <BanknoteIcon />
                                                                     Despesa
-                                                                </span>
-                                                            </DropdownMenuItem>
-                                                            <DropdownMenuItem>
-                                                                <span>
+                                                                </DropdownMenuItem>
+                                                                <DropdownMenuItem>
+                                                                    <HandCoinsIcon />
                                                                     Ganho
-                                                                </span>
+                                                                </DropdownMenuItem>
+                                                                <DropdownMenuSeparator className="mx-1" />
+                                                            </DropdownMenuGroup>
+                                                            <DropdownMenuLabel>
+                                                                Outros
+                                                            </DropdownMenuLabel>
+                                                            <DropdownMenuItem>
+                                                                <RocketIcon />
+                                                                Meta
                                                             </DropdownMenuItem>
                                                             <DropdownMenuItem>
-                                                                <span>
-                                                                    Meta
-                                                                </span>
+                                                                <TagIcon />
+                                                                Categoria
                                                             </DropdownMenuItem>
                                                         </DropdownMenuContent>
                                                     </DropdownMenu>
@@ -168,7 +200,7 @@ export function CustomSidebar() {
                                     >
                                         <Link to={item.url}>
                                             <item.icon />
-                                            <span>{item.title}</span>
+                                            <span>{t(item.title)}</span>
                                         </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>

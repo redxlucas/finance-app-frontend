@@ -8,12 +8,23 @@ import { loginUser } from "@/services/authService";
 import { useAuth } from "@/contexts/AuthContext";
 import { useState } from "react";
 import { AlertDialogBox } from "../organisms/AlertDialogBox";
+import { useTranslation } from "react-i18next";
+import {
+    Select,
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+} from "@/components/ui/select"; // ajuste o caminho conforme seu projeto
+import i18n from "@/lib/i18n";
 
 export default function LoginPage() {
     const navigate = useNavigate();
     const { login, token } = useAuth();
     const [openError, setOpenError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [errorTitle, setErrorTitle] = useState("");
+    const [errorDescription, setErrorDescription] = useState("");
+    const { t } = useTranslation();
 
     async function handleLogin(data: LoginInput) {
         try {
@@ -21,11 +32,17 @@ export default function LoginPage() {
             login(token);
             navigate("/");
         } catch (err) {
-            const msg =
+            const titleKey =
                 err instanceof Error
                     ? err.message
-                    : "Usuário ou senha inválidos. Por favor, tente novamente.";
-            setErrorMessage(msg);
+                    : "auth.error.unexpected.title";
+            const descriptionKey =
+                err instanceof Error && (err as any).description
+                    ? (err as any).description
+                    : "auth.error.unexpected.description";
+
+            setErrorTitle(t(titleKey));
+            setErrorDescription(t(descriptionKey));
             setOpenError(true);
         }
     }
@@ -35,9 +52,8 @@ export default function LoginPage() {
             navigate("/");
         } else {
             setOpenError(true);
-            setErrorMessage(
-                "É necessário se autenticar para acessar o sistema"
-            );
+            setErrorTitle(t("auth.error.loginRequired.title"));
+            setErrorDescription(t("auth.error.loginRequired.description"));
         }
     };
 
@@ -55,30 +71,46 @@ export default function LoginPage() {
                     Voltar
                 </>
             </Button>
+            <Select
+                value={i18n.language}
+                onValueChange={(value) => i18n.changeLanguage(value)}
+            >
+                <SelectTrigger
+                    className={cn(
+                        buttonVariants({ variant: "ghost" }),
+                        "absolute right-4 top-4 md:right-8 md:top-8 bg-transparent text-secondary-foreground w-[140px] h-10 text-sm"
+                    )}
+                >
+                    <SelectValue placeholder="Idioma" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectItem value="pt">{t("languages.pt")}</SelectItem>
+                    <SelectItem value="en">{t("languages.en")}</SelectItem>
+                </SelectContent>
+            </Select>
             <AlertDialogBox
                 open={openError}
                 onOpenChange={setOpenError}
-                title={"Acesso negado"}
-                description={errorMessage}
+                title={errorTitle}
+                description={errorDescription}
             />
             <div className="mx-auto flex w-full flex-col justify-center space-y-4 sm:px-0 sm:max-w-md md:max-w-lg lg:w-[70%] xl:w-[60%] 2xl:w-[50%]">
                 <div className="flex flex-col space-y-2 text-center">
                     <Turtle className="mx-auto h-8 w-8 text-primary" />
                     <h1 className="text-2xl font-semibold tracking-tight">
-                        Bem-vindo de volta
+                        {t("auth.login.title")}
                     </h1>
                     <p className="text-sm text-muted-foreground">
-                        Insira seu email e senha para entrar no Jabuti
+                        {t("auth.login.description")}
                     </p>
                 </div>
-                {/* <UserAuthForm /> */}
                 <LoginForm onAdd={handleLogin} />
                 <p className="px-8 text-center text-sm text-muted-foreground">
                     <Link
                         to="/register"
                         className="hover:text-brand underline underline-offset-4"
                     >
-                        Não possui uma conta? Registre-se aqui
+                        {t("auth.login.link")}
                     </Link>
                 </p>
             </div>
