@@ -1,7 +1,5 @@
 import { useAuth } from "@/contexts/AuthContext";
-import { useAuthUser } from "@/hooks/useAuthUser";
 import { useTranslation } from "react-i18next";
-import { Trans } from "react-i18next";
 
 export default function Dashboard() {
     const { user } = useAuth();

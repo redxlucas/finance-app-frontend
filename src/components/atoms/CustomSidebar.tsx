@@ -1,4 +1,3 @@
-import React from "react";
 import {
     Banknote,
     BanknoteArrowDownIcon,
@@ -95,7 +94,7 @@ const items = [
 ];
 
 export function CustomSidebar() {
-    const { expenses, addExpense } = useExpenses();
+    const { addExpense } = useExpenses();
 
     const location = useLocation();
     const { user } = useAuth();

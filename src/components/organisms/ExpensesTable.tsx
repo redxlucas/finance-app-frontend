@@ -12,7 +12,6 @@ import {
     getFilteredRowModel,
     RowSelectionState,
     getPaginationRowModel,
-    FilterFn,
 } from "@tanstack/react-table";
 
 import {
@@ -26,15 +25,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 
 import { ExpenseResponse } from "@/types/expense";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+// import {
+//     DropdownMenu,
+//     DropdownMenuContent,
+//     DropdownMenuItem,
+//     DropdownMenuTrigger,
+// } from "../ui/dropdown-menu";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 export function ExpensesTable({
@@ -128,25 +127,25 @@ export function ExpensesTable({
                 );
             },
         },
-        {
-            id: "actions",
-            cell: ({ row }) => (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem>Editar</DropdownMenuItem>
-                        <DropdownMenuItem>Excluir</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            ),
-            enableSorting: false,
-            enableHiding: false,
-        },
+        // {
+        //     id: "actions",
+        //     cell: ({ row }) => (
+        //         <DropdownMenu>
+        //             <DropdownMenuTrigger asChild>
+        //                 <Button variant="ghost" className="h-8 w-8 p-0">
+        //                     <span className="sr-only">Open menu</span>
+        //                     <MoreHorizontal className="h-4 w-4" />
+        //                 </Button>
+        //             </DropdownMenuTrigger>
+        //             <DropdownMenuContent align="end">
+        //                 <DropdownMenuItem>Editar</DropdownMenuItem>
+        //                 <DropdownMenuItem>Excluir</DropdownMenuItem>
+        //             </DropdownMenuContent>
+        //         </DropdownMenu>
+        //     ),
+        //     enableSorting: false,
+        //     enableHiding: false,
+        // },
     ];
 
     const table = useReactTable({
