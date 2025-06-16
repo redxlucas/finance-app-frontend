@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { PasswordInput } from "../atoms/PasswordInput";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
     onAdd: (data: LoginInput) => Promise<void>;
@@ -25,6 +26,8 @@ export default function LoginForm({
     ...props
 }: UserAuthFormProps) {
     const { t } = useTranslation();
+    const [isLoading, setIsLoading] = useState(false);
+
     const form = useForm<LoginInput>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -34,6 +37,7 @@ export default function LoginForm({
     });
 
     async function handleSubmit(data: LoginInput) {
+        setIsLoading(true);
         const dataToSend = {
             ...data,
         };
@@ -43,6 +47,8 @@ export default function LoginForm({
             form.reset();
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -93,7 +99,34 @@ export default function LoginForm({
                                 </FormItem>
                             )}
                         />
-                        <Button>Entrar</Button>
+                        <Button disabled={isLoading}>
+                            {isLoading ? (
+                                <>
+                                    <svg
+                                        className="animate-spin mr-2 h-5 w-5 text-white inline"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        ></circle>
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                        ></path>
+                                    </svg>
+                                </>
+                            ) : (
+                                t("auth.login.submit")
+                            )}
+                        </Button>
                     </div>
                 </form>
             </ShadForm>
