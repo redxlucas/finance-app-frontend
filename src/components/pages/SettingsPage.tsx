@@ -1,8 +1,5 @@
-import { useAuth } from "@/contexts/AuthContext";
-import { useAuthUser } from "@/hooks/useAuthUser";
 import i18n from "@/lib/i18n";
 import { useTranslation } from "react-i18next";
-import { Trans } from "react-i18next";
 import {
     Select,
     SelectContent,
@@ -12,7 +9,7 @@ import {
 } from "../ui/select";
 
 export default function SettingsPage() {
-    const { user } = useAuth();
+    // const { user } = useAuth();
     const { t } = useTranslation();
     const currentLanguage = i18n.language;
 

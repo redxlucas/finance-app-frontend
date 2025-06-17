@@ -21,7 +21,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ArrowUpDown } from "lucide-react";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { TransactionResponse } from "@/types/transaction";
 import { TransactionService } from "@/services/transactionService";
 import { useTranslation } from "react-i18next";
@@ -41,7 +40,7 @@ export function TransactionsTable({
         pageSize: initialPageSize,
     });
     const [sorting, setSorting] = React.useState<SortingState>([]);
-    const [typeFilter, setTypeFilter] = React.useState<string>("");
+    const [typeFilter] = React.useState<string>("");
     const [totalCount, setTotalCount] = React.useState(0);
     const { t } = useTranslation();
 

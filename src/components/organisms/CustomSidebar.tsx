@@ -88,14 +88,14 @@ export function CustomSidebar() {
     const [open, setOpen] = useState(false);
     const [type, setType] = useState<"expense" | "income" | null>(null);
 
-    const handleSelect = (selectedType: "expense" | "income") => {
-        setType(selectedType);
-        setOpen(true);
+    // const handleSelect = (selectedType: "expense" | "income") => {
+    //     setType(selectedType);
+    //     setOpen(true);
 
-        setTimeout(() => {
-            setOpen(true);
-        }, 10);
-    };
+    //     setTimeout(() => {
+    //         setOpen(true);
+    //     }, 10);
+    // };
 
     const handleLogout = () => {
         AuthService.logout();
