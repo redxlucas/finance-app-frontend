@@ -23,7 +23,7 @@ export default function DashboardBalanceCard() {
                 </p>
             ) : (
                 <DashboardCard
-                    title="Saldo Atual"
+                    title="Total de Despesas"
                     description="Mês de Junho"
                     value={data.currentBalance}
                     footer={
@@ -35,6 +35,7 @@ export default function DashboardBalanceCard() {
                               )}% em relação ao mês anterior`
                             : undefined
                     }
+                    isLoading={false}
                 />
             )}
         </div>

@@ -9,16 +9,12 @@ import {
     CardHeader,
     CardTitle,
 } from "../ui/card";
-import { useDashboardData } from "@/hooks/useDashboardData";
 import DashboardBalanceCard from "../organisms/DashboardBalanceCard";
+import DashboardTotalExpenseCard from "../organisms/DashboardTotalExpenseCard";
 
 export default function Dashboard() {
     const { user } = useAuth();
     const { t } = useTranslation();
-    const { data, loading, error } = useDashboardData();
-
-    if (loading) return <p>Loading...</p>;
-    if (error || !data) return <p>Error loading data.</p>;
 
     return (
         <div className="p-4 max-w-full md:max-w-5xl lg:max-w-7xl">
@@ -31,7 +27,8 @@ export default function Dashboard() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                 <DashboardBalanceCard />
-                <Card>
+                <DashboardTotalExpenseCard />
+                {/* <Card>
                     <CardHeader>
                         <CardTitle>Total de Despesas</CardTitle>
                         <CardDescription>Mês de Junho</CardDescription>
@@ -40,14 +37,12 @@ export default function Dashboard() {
                         R$ 1347,22
                     </CardContent>
                     <CardFooter className="text-xs text-muted-foreground">
-                        {/* <TrendingUpIcon /> */}
                         <span>
-                            {" "}
                             <span className="text-primary">+ 19,88%</span> em
                             relação ao mês anterior
                         </span>
                     </CardFooter>
-                </Card>
+                </Card> */}
                 <Card className="w-full">
                     <CardHeader>
                         <CardTitle className="text-sm">
