@@ -7,8 +7,6 @@ export default function DashboardBalanceCard() {
 
     if (error || !data) return <p>Failed to load dashboard data.</p>;
 
-    const teste = true;
-
     return (
         <div className="w-full max-w-sm sm:max-w-md md:max-w-lg">
             {loading ? (
