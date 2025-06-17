@@ -58,5 +58,34 @@
                 "description": "The provided email is already in use. Try logging in or use a different email."
             }
         }
+    },
+    "transaction": {
+        "title": "Transactions",
+        "table": {
+            "columns": {
+                "description": "Description",
+                "recurrenceType": "Recurrence Type",
+                "transactionType": "Transaction Type",
+                "category": "Category",
+                "transactionDate": "Date",
+                "amount": "Amount"
+            },
+            "selectedCount": "{{count}} of {{total}} transactions selected.",
+            "pagination": {
+                "previous": "Previous",
+                "next": "Next"
+            },
+            "notFound": "No results found."
+        },
+        "type": {
+            "transactionType": {
+                "expense": "Expense",
+                "income": "Income"
+            },
+            "recurrenceType": {
+                "fixed": "Fixed",
+                "variable": "Variable"
+            }
+        }
     }
 }

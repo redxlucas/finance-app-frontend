@@ -1,6 +1,6 @@
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "../ui/sidebar";
 import { Outlet } from "react-router-dom";
-import { CustomSidebar } from "./CustomSidebar";
+import { CustomSidebar } from "../organisms/CustomSidebar";
 
 const Layout = () => {
     return (

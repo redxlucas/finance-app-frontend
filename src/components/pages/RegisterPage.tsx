@@ -16,6 +16,7 @@ import {
     SelectValue,
 } from "../ui/select";
 import i18n from "@/lib/i18n";
+import { ModeToggle } from "../atoms/ModeToggle";
 
 export default function RegisterPage() {
     const navigate = useNavigate();
@@ -51,23 +52,27 @@ export default function RegisterPage() {
                     Voltar
                 </>
             </Link>
-            <Select
-                value={i18n.language}
-                onValueChange={(value) => i18n.changeLanguage(value)}
-            >
-                <SelectTrigger
-                    className={cn(
-                        buttonVariants({ variant: "ghost" }),
-                        "absolute right-4 top-4 md:right-8 md:top-8 bg-transparent text-secondary-foreground w-[140px] h-10 text-sm"
-                    )}
+            <div className="absolute top-4 right-4 md:top-8 md:right-8 flex items-center gap-2">
+                <ModeToggle />
+                <Select
+                    value={i18n.language}
+                    onValueChange={(value) => i18n.changeLanguage(value)}
                 >
-                    <SelectValue placeholder="Idioma" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="pt">{t("languages.pt")}</SelectItem>
-                    <SelectItem value="en">{t("languages.en")}</SelectItem>
-                </SelectContent>
-            </Select>
+                    <SelectTrigger
+                        className={cn(
+                            buttonVariants({ variant: "ghost" }),
+                            "bg-transparent text-secondary-foreground w-[140px] h-10 text-sm"
+                        )}
+                    >
+                        <SelectValue placeholder="Idioma" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="pt">{t("languages.pt")}</SelectItem>
+                        <SelectItem value="en">{t("languages.en")}</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+
             <div className="mx-auto flex w-full flex-col justify-center space-y-4 my-8 sm:px-0 sm:max-w-md md:max-w-lg lg:w-[70%] xl:w-[60%] 2xl:w-[50%]">
                 <div className="flex flex-col space-y-2 text-center">
                     <Turtle className="mx-auto h-8 w-8 text-primary" />

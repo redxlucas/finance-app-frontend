@@ -163,7 +163,7 @@ export default function RegisterForm({
                                 />
                             </div>
                         </div>
-                        <FormField
+                        {/* <FormField
                             control={form.control}
                             name="receiveEmails"
                             render={({ field }) => (
@@ -190,7 +190,7 @@ export default function RegisterForm({
                                     </FormControl>
                                 </FormItem>
                             )}
-                        />
+                        /> */}
                         <>
                             <Button disabled={isLoading}>
                                 {isLoading ? (

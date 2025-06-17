@@ -58,5 +58,37 @@
                 "description": "O email informado já está em uso. Tente fazer login ou utilize outro email."
             }
         }
+    },
+    "transaction": {
+        "title": "Transações",
+        "table": {
+            "columns": {
+                "description": "Descrição",
+                "recurrenceType": "Tipo de Recorrência",
+                "transactionType": "Tipo de Transação",
+                "category": "Categoria",
+                "transactionDate": "Data",
+                "amount": "Valor",
+                "fixedRecurrencePeriodType": "Período de Recorrência",
+                "recurrenceDayOfMonth": "Dia da Recorrência",
+                "recurrenceEndDate": "Data de Fim da da Recorrência"
+            },
+            "selectedCount": "{{count}} de {{total}} transações selecionadas.",
+            "pagination": {
+                "previous": "Anterior",
+                "next": "Próximo"
+            },
+            "notFound": "Nenhum resultado encontrado."
+        },
+        "type": {
+            "transactionType": {
+                "expense": "Despesa",
+                "income": "Gasto"
+            },
+            "recurrenceType": {
+                "fixed": "Fixo",
+                "variable": "Variável"
+            }
+        }
     }
 }

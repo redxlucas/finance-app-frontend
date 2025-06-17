@@ -40,6 +40,8 @@
     --sidebar-border: oklch(0.92 0.004 286.32);
     --sidebar-ring: oklch(0.723 0.219 149.579);
     --sidebar-font: oklch(0.4819 0 0);
+    --chart-expenses: oklch(0.7019 0.15768 160.4375);
+    --chart-incomes: oklch(0.7019 0.15768 160.4375);
 }
 
 .dark {

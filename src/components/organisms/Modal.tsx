@@ -1,19 +1,19 @@
 import {
     Dialog,
+    DialogTrigger,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
+    DialogDescription,
     DialogClose,
 } from "@/components/ui/dialog";
-
-import React from "react";
-import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type ModalProps = {
-    trigger: React.ReactNode;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    trigger?: React.ReactNode;
     title: string;
     description?: string;
     children: React.ReactNode;
@@ -21,13 +21,15 @@ type ModalProps = {
 
 export const Modal = ({
     trigger,
+    open,
+    onOpenChange,
     title,
     description,
     children,
 }: ModalProps) => {
     return (
-        <Dialog>
-            <DialogTrigger asChild>{trigger}</DialogTrigger>
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
 
             <DialogContent className="bg-secondary border-border">
                 <DialogHeader>
@@ -38,6 +40,7 @@ export const Modal = ({
                 </DialogHeader>
 
                 {children}
+
                 <DialogClose asChild>
                     <Button
                         variant="default"
