@@ -8,7 +8,6 @@ import {
     XAxis,
     YAxis,
     Tooltip,
-    ResponsiveContainer,
 } from "recharts";
 
 import {

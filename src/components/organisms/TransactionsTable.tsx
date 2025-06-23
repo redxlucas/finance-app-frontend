@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowUpDown, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 import { TransactionResponse } from "@/types/transaction";
 import { TransactionService } from "@/services/transactionService";
 import { useTranslation } from "react-i18next";
