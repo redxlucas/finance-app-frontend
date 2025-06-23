@@ -56,7 +56,6 @@ export default function RegisterForm({
         try {
             await onAdd(dataToSend);
         } catch (error) {
-            console.error(error);
         } finally {
             setIsLoading(false);
         }

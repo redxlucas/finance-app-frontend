@@ -46,7 +46,6 @@ export default function LoginForm({
             await onAdd(dataToSend);
             form.reset();
         } catch (error) {
-            console.error(error);
         } finally {
             setIsLoading(false);
         }

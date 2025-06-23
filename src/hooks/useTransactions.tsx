@@ -7,16 +7,16 @@ export function useTransactions() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const { triggerUpdate } = useTransactionsUpdate();
+    const { updateCounter } = useTransactionsUpdate();
 
     useEffect(() => {
         TransactionService.getAll()
             .then((result) => setTransactions(result.content))
             .catch((err) => {
-                console.error(err);
                 setError("Erro ao buscar despesas");
             })
             .finally(() => setLoading(false));
-    }, []);
+    }, [updateCounter]);
 
     const addTransaction = async (form: TransactionRequest) => {
         try {
@@ -24,7 +24,6 @@ export function useTransactions() {
             setTransactions((prev) => [...prev, newTransaction]);
             triggerUpdate();
         } catch (err) {
-            console.error(err);
             setError("Erro ao adicionar despesa.");
         }
     };

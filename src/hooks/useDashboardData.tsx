@@ -10,18 +10,12 @@ export function useDashboardData() {
     const { updateCounter } = useTransactionsUpdate();
 
     useEffect(() => {
-        console.log(
-            "Dashboard data loading due to updateCounter change:",
-            updateCounter
-        );
         async function loadData() {
             try {
                 const result = await getData();
-                console.log("Dashboard data fetched:", result);
                 setData(result);
             } catch (err) {
                 setError("Failed to load dashboard data");
-                console.error(err);
             } finally {
                 setLoading(false);
             }

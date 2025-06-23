@@ -79,9 +79,7 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
     useEffect(() => {
         getCategoriesByType(type)
             .then(setCategories)
-            .catch((error) => {
-                console.error("Erro ao buscar categorias:", error);
-            });
+            .catch((error) => {});
     }, [type]);
 
     async function handleSubmit(data: TransactionInput) {
@@ -93,7 +91,6 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
             form.reset();
             onClose();
         } catch (error) {
-            console.error(error);
         } finally {
             setIsLoading(false);
         }
@@ -245,7 +242,7 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
                                     }
                                     value={field.value?.toString() ?? ""}
                                 >
-                                    <SelectTrigger className="text-white">
+                                    <SelectTrigger className="text-accent-foreground">
                                         <SelectValue
                                             placeholder={t(
                                                 "transaction.form.category"

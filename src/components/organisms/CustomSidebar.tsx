@@ -137,7 +137,7 @@ export function CustomSidebar() {
                                                 }}
                                             >
                                                 <BanknoteIcon />
-                                                Despesa
+                                                {t("sidebar.add.expense")}
                                             </DropdownMenuItem>
 
                                             <DropdownMenuItem
@@ -148,7 +148,7 @@ export function CustomSidebar() {
                                                 }}
                                             >
                                                 <HandCoinsIcon />
-                                                Ganho
+                                                {t("sidebar.add.income")}
                                             </DropdownMenuItem>
 
                                             <GenericDialog
@@ -188,15 +188,15 @@ export function CustomSidebar() {
                                         </>
 
                                         <DropdownMenuLabel>
-                                            Outros
+                                            {t("sidebar.add.others")}
                                         </DropdownMenuLabel>
                                         <DropdownMenuItem>
                                             <RocketIcon />
-                                            Meta
+                                            {t("sidebar.add.goal")}
                                         </DropdownMenuItem>
                                         <DropdownMenuItem>
                                             <TagIcon />
-                                            Categoria
+                                            {t("sidebar.add.category")}
                                         </DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>

@@ -1,10 +1,18 @@
 {
+    "welcomeMessage": "Welcome, {{user}}!",
     "languages": {
         "pt": "Portuguese",
         "en": "English"
     },
     "sidebar": {
         "new": "New",
+        "add": {
+            "expense": "Expense",
+            "income": "Income",
+            "others": "Others",
+            "goal": "Goal",
+            "category": "Category"
+        },
         "dashboard": "Dashboard",
         "transactions": "Transactions",
         "goals": "Goals",
@@ -18,7 +26,7 @@
     },
     "auth": {
         "email": "Email",
-        "password": "Senha",
+        "password": "Password",
         "login": {
             "title": "Welcome back",
             "description": "Enter your email and password to log into Jabuti",
@@ -87,13 +95,17 @@
                 "category": "Category",
                 "transactionDate": "Date",
                 "amount": "Amount",
-                "actions": "Actions"
+                "actions": "Actions",
+                "fixedRecurrencePeriodType": "Recurrence Period",
+                "recurrenceDayOfMonth": "Recurrence Day",
+                "recurrenceEndDate": "Recurrence End Date"
             },
             "selectedCount": "{{count}} of {{total}} transactions selected.",
             "pagination": {
                 "previous": "Previous",
                 "next": "Next"
             },
+            "loading": "Loading table...",
             "notFound": "No results found."
         },
         "type": {
@@ -109,6 +121,76 @@
     },
     "dashboard": {
         "title": "Overview",
-        "description": "Welcome, {{user}}"
+        "description": "Welcome, {{user}}",
+        "noTransaction": "No transactions recorded yet. Add one to see your data.",
+        "cards": {
+            "totalBalance": {
+                "title": "Current Balance",
+                "description": "Month of June",
+                "footer": "{{variation}} compared to last month"
+            },
+            "totalExpense": {
+                "title": "Total Expenses",
+                "description": "Month of June",
+                "footer": "{{variation}} compared to last month"
+            },
+            "topCategory": {
+                "title": "Top Spending by Category",
+                "description": "Month of June",
+                "footer": "{{variation}} compared to last month"
+            },
+            "error": {
+                "loadFailed": "Failed to load data. Please try again.",
+                "dataUnavailable": "Dashboard data could not be loaded."
+            }
+        },
+        "chart": {
+            "line": {
+                "title": "Transactions",
+                "description": "Total {{label}} in the month of {{month}}",
+                "expense": "Expenses",
+                "income": "Income",
+                "net": "Daily Balance"
+            }
+        }
+    },
+    "category": {
+        "food": "Food",
+        "housing": "Housing",
+        "transport": "Transport",
+        "health": "Health",
+        "education": "Education",
+        "entertainment": "Entertainment",
+        "subscriptions": "Subscriptions",
+        "clothing": "Clothing",
+        "pets": "Pets",
+        "personal_care": "Personal Care",
+        "gifts": "Gifts",
+        "travel": "Travel",
+        "donations": "Donations",
+        "taxes": "Taxes",
+        "home_maintenance": "Home Maintenance",
+        "electronics": "Electronics",
+        "childcare": "Childcare",
+        "insurance": "Insurance",
+        "services": "Services",
+        "salary": "Salary",
+        "freelance": "Freelance",
+        "investments": "Investments",
+        "rent_received": "Rent Received",
+        "bonus": "Bonus",
+        "gifts_received": "Gifts Received",
+        "dividends": "Dividends",
+        "reimbursements": "Reimbursements",
+        "scholarships": "Scholarships",
+        "interest": "Interest",
+        "item_sales": "Item Sales",
+        "affiliates": "Affiliates",
+        "cashback": "Cashback",
+        "commissions": "Commissions",
+        "tips": "Tips",
+        "pension": "Pension",
+        "business_income": "Business Income",
+        "other_income": "Other Income"
     }
 }

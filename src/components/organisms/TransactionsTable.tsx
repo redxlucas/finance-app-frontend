@@ -24,6 +24,7 @@ import { Trash } from "lucide-react";
 import { TransactionResponse } from "@/types/transaction";
 import { TransactionService } from "@/services/transactionService";
 import { useTranslation } from "react-i18next";
+import { useTransactionsUpdate } from "@/contexts/TransactionUpdateContext";
 
 export function TransactionsTable({
     initialPageSize = 10,
@@ -42,7 +43,9 @@ export function TransactionsTable({
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [typeFilter] = React.useState<string>("");
     const [totalCount, setTotalCount] = React.useState(0);
+    const [deletingId, setDeletingId] = React.useState<number | null>(null);
     const { t } = useTranslation();
+    const { updateCounter } = useTransactionsUpdate();
 
     const columns: ColumnDef<TransactionResponse>[] = [
         {
@@ -180,13 +183,15 @@ export function TransactionsTable({
                         )
                     ) {
                         try {
+                            setDeletingId(transaction.id);
                             await TransactionService.delete(transaction.id);
                             setTransactions((prev) =>
                                 prev.filter((t) => t.id !== transaction.id)
                             );
                         } catch (error) {
                             alert(t("transaction.delete.error"));
-                            console.error(error);
+                        } finally {
+                            setDeletingId(null);
                         }
                     }
                 };
@@ -197,8 +202,31 @@ export function TransactionsTable({
                         size="icon"
                         onClick={handleDelete}
                         className="text-xs"
+                        disabled={deletingId === transaction.id}
+                        aria-label={t("transaction.table.columns.actions")}
                     >
-                        <Trash className="h-4 w-4 " />
+                        {deletingId === transaction.id ? (
+                            <svg
+                                className="animate-spin h-4 w-4 text-primary"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                            >
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                ></circle>
+                                <path
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                ></path>
+                            </svg>
+                        ) : (
+                            <Trash className="h-4 w-4" />
+                        )}
                     </Button>
                 );
             },
@@ -254,7 +282,7 @@ export function TransactionsTable({
 
     React.useEffect(() => {
         fetchData();
-    }, [fetchData]);
+    }, [fetchData, updateCounter]);
 
     const table = useReactTable({
         data: transactions,

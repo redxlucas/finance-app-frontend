@@ -5,7 +5,14 @@
         "en": "Inglês"
     },
     "sidebar": {
-        "new": "Novo",
+        "new": "Adicionar",
+        "add": {
+            "expense": "Despesa",
+            "income": "Ganho",
+            "others": "Outros",
+            "goal": "Meta",
+            "category": "Categoria"
+        },
         "dashboard": "Dashboard",
         "transactions": "Transações",
         "goals": "Metas",
@@ -98,6 +105,7 @@
                 "previous": "Anterior",
                 "next": "Próximo"
             },
+            "loading": "Carregando tabela...",
             "notFound": "Nenhum resultado encontrado."
         },
         "type": {
