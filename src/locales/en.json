@@ -1,5 +1,4 @@
 {
-    "welcomeMessage": "Welcome, {{user}}",
     "languages": {
         "pt": "Portuguese",
         "en": "English"
@@ -13,7 +12,9 @@
     },
     "settings": {
         "title": "Settings",
-        "description": "Manage your account settings and set email preferences"
+        "description": "Manage your account settings and set email preferences",
+        "languageLabel": "Language:",
+        "languagePlaceholder": "Select your language"
     },
     "auth": {
         "email": "Email",
@@ -61,6 +62,23 @@
     },
     "transaction": {
         "title": "Transactions",
+        "loading": "Loading transactions...",
+        "notFound": "No transactions found.",
+        "form": {
+            "expense": {
+                "title": "New Expense",
+                "description": "Add a new expense"
+            },
+            "income": {
+                "title": "New Income",
+                "description": "Add a new income"
+            },
+            "amount": "Amount",
+            "description": "Description",
+            "transactionDate": "Transaction Date",
+            "category": "Category",
+            "submit": "Save"
+        },
         "table": {
             "columns": {
                 "description": "Description",
@@ -68,7 +86,8 @@
                 "transactionType": "Transaction Type",
                 "category": "Category",
                 "transactionDate": "Date",
-                "amount": "Amount"
+                "amount": "Amount",
+                "actions": "Actions"
             },
             "selectedCount": "{{count}} of {{total}} transactions selected.",
             "pagination": {
@@ -87,5 +106,9 @@
                 "variable": "Variable"
             }
         }
+    },
+    "dashboard": {
+        "title": "Overview",
+        "description": "Welcome, {{user}}"
     }
 }

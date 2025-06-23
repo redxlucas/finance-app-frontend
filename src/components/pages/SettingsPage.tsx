@@ -21,19 +21,23 @@ export default function SettingsPage() {
             <p className="text-sm text-muted-foreground">
                 {t("settings.description")}
             </p>
-
-            <Select
-                value={currentLanguage}
-                onValueChange={(value) => i18n.changeLanguage(value)}
-            >
-                <SelectTrigger>
-                    <SelectValue placeholder="Idioma" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="pt">Português</SelectItem>
-                    <SelectItem value="en">English</SelectItem>
-                </SelectContent>
-            </Select>
+            <div className="mt-4 flex items-center space-x-4">
+                <span className="text-sm text-muted-foreground">
+                    {t("settings.languageLabel")}
+                </span>
+                <Select
+                    value={currentLanguage}
+                    onValueChange={(value) => i18n.changeLanguage(value)}
+                >
+                    <SelectTrigger>
+                        <SelectValue placeholder="Idioma" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="pt">Português</SelectItem>
+                        <SelectItem value="en">English</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
         </div>
     );
 }

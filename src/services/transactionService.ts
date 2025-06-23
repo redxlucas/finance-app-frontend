@@ -46,4 +46,7 @@ export const TransactionService = {
             totalCount: data.totalElements,
         };
     },
+    async delete(id: number): Promise<void> {
+        await api.delete(`/api/transactions/${id}`);
+    },
 };

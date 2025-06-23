@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { TransactionService } from "@/services/transactionService";
 import { TransactionRequest, TransactionResponse } from "@/types/transaction";
+import { useTransactionsUpdate } from "@/contexts/TransactionUpdateContext";
 export function useTransactions() {
     const [transaction, setTransactions] = useState<TransactionResponse[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const { triggerUpdate } = useTransactionsUpdate();
 
     useEffect(() => {
         TransactionService.getAll()
@@ -20,6 +22,7 @@ export function useTransactions() {
         try {
             const newTransaction = await TransactionService.create(form);
             setTransactions((prev) => [...prev, newTransaction]);
+            triggerUpdate();
         } catch (err) {
             console.error(err);
             setError("Erro ao adicionar despesa.");

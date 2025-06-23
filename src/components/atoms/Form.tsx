@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 
 type Props = {
-    title: string;
+    title?: string;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     children: React.ReactNode;
     submitLabel?: string;

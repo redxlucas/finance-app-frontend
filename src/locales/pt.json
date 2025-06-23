@@ -13,7 +13,9 @@
     },
     "settings": {
         "title": "Configurações",
-        "description": "Gerencie suas configurações de conta e defina suas preferências de email"
+        "description": "Gerencie suas configurações de conta e defina suas preferências de email",
+        "languageLabel": "Idioma:",
+        "languagePlaceholder": "Selecione o idioma"
     },
     "auth": {
         "email": "Email",
@@ -61,6 +63,23 @@
     },
     "transaction": {
         "title": "Transações",
+        "loading": "Carregando transações...",
+        "notFound": "Nenhuma transação encontrada.",
+        "form": {
+            "expense": {
+                "title": "Nova Despesa",
+                "description": "Adicione uma nova despesa"
+            },
+            "income": {
+                "title": "Novo Ganho",
+                "description": "Adicione um novo ganho"
+            },
+            "amount": "Valor",
+            "description": "Descrição",
+            "transactionDate": "Data da Transação",
+            "category": "Categoria",
+            "submit": "Salvar"
+        },
         "table": {
             "columns": {
                 "description": "Descrição",
@@ -69,6 +88,7 @@
                 "category": "Categoria",
                 "transactionDate": "Data",
                 "amount": "Valor",
+                "actions": "Ações",
                 "fixedRecurrencePeriodType": "Período de Recorrência",
                 "recurrenceDayOfMonth": "Dia da Recorrência",
                 "recurrenceEndDate": "Data de Fim da da Recorrência"
@@ -83,12 +103,86 @@
         "type": {
             "transactionType": {
                 "expense": "Despesa",
-                "income": "Gasto"
+                "income": "Ganho"
             },
             "recurrenceType": {
                 "fixed": "Fixo",
                 "variable": "Variável"
             }
         }
+    },
+    "dashboard": {
+        "title": "Visão Geral",
+        "description": "Bem-vindo(a), {{user}}",
+        "noTransaction": "Nenhuma transação cadastrada ainda. Adicione uma para visualizar seus dados.",
+        "cards": {
+            "totalBalance": {
+                "title": "Saldo Atual",
+                "description": "Mês de Junho",
+                "footer": "{{variation}} em relação ao mês anterior"
+            },
+            "totalExpense": {
+                "title": "Total de Despesas",
+                "description": "Mês de Junho",
+                "footer": "{{variation}} em relação ao mês anterior"
+            },
+            "topCategory": {
+                "title": "Maior Despesa por Categoria",
+                "description": "Mês de Junho",
+                "footer": "{{variation}} em relação ao mês anterior"
+            },
+            "error": {
+                "loadFailed": "Não foi possível carregar os dados. Por favor, tente novamente.",
+                "dataUnavailable": "Não foi possível carregar os dados do painel."
+            }
+        },
+        "chart": {
+            "line": {
+                "title": "Transações",
+                "description": "Total de {{label}} do mês de {{month}}",
+                "expense": "Despesas",
+                "income": "Ganhos",
+                "net": "Saldo Diário"
+            }
+        }
+    },
+    "category": {
+        "food": "Alimentação",
+        "housing": "Moradia",
+        "transport": "Transporte",
+        "health": "Saúde",
+        "education": "Educação",
+        "entertainment": "Entretenimento",
+        "subscriptions": "Assinaturas",
+        "clothing": "Roupas",
+        "pets": "Animais de Estimação",
+        "personal_care": "Cuidados Pessoais",
+        "gifts": "Presentes",
+        "travel": "Viagens",
+        "donations": "Doações",
+        "taxes": "Impostos",
+        "home_maintenance": "Manutenção da Casa",
+        "electronics": "Eletrônicos",
+        "childcare": "Cuidados Infantis",
+        "insurance": "Seguro",
+        "services": "Serviços",
+        "salary": "Salário",
+        "freelance": "Freelance",
+        "investments": "Investimentos",
+        "rent_received": "Aluguel Recebido",
+        "bonus": "Bônus",
+        "gifts_received": "Presentes Recebidos",
+        "dividends": "Dividendos",
+        "reimbursements": "Reembolsos",
+        "scholarships": "Bolsas de Estudo",
+        "interest": "Juros",
+        "item_sales": "Venda de Itens",
+        "affiliates": "Afiliados",
+        "cashback": "Cashback",
+        "commissions": "Comissões",
+        "tips": "Gorjetas",
+        "pension": "Pensão",
+        "business_income": "Renda de Negócios",
+        "other_income": "Outros Rendimentos"
     }
 }

@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowUpDown } from "lucide-react";
+import { ArrowUpDown, Trash } from "lucide-react";
 import { TransactionResponse } from "@/types/transaction";
 import { TransactionService } from "@/services/transactionService";
 import { useTranslation } from "react-i18next";
@@ -68,17 +68,7 @@ export function TransactionsTable({
         },
         {
             accessorKey: "description",
-            header: ({ column }) => (
-                <Button
-                    variant="ghost"
-                    onClick={() =>
-                        column.toggleSorting(column.getIsSorted() === "asc")
-                    }
-                >
-                    {t("transaction.table.columns.description")}
-                    <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-            ),
+            header: t("transaction.table.columns.description"),
             cell: ({ row }) => row.original.description,
         },
         {
@@ -157,6 +147,47 @@ export function TransactionsTable({
                 );
             },
         },
+        {
+            id: "actions",
+            header: () => <span>{t("transaction.table.columns.actions")}</span>,
+            cell: ({ row }) => {
+                const transaction = row.original;
+
+                const handleDelete = async () => {
+                    if (
+                        window.confirm(
+                            t("transaction.delete.confirm", {
+                                description: transaction.description,
+                            })
+                        )
+                    ) {
+                        try {
+                            await TransactionService.delete(transaction.id);
+                            setTransactions((prev) =>
+                                prev.filter((t) => t.id !== transaction.id)
+                            );
+                        } catch (error) {
+                            alert(t("transaction.delete.error"));
+                            console.error(error);
+                        }
+                    }
+                };
+
+                return (
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={handleDelete}
+                        className="text-xs"
+                    >
+                        <Trash className="h-4 w-4 " />
+                    </Button>
+                );
+            },
+            enableSorting: false,
+            enableHiding: false,
+        },
+
         // {
         //     accessorKey: "fixedRecurrencePeriodType",
         //     header: t("transaction.table.columns.fixedRecurrencePeriodType"),
@@ -224,9 +255,10 @@ export function TransactionsTable({
         getPaginationRowModel: getPaginationRowModel(),
     });
 
-    if (loading) return <p>Carregando despesas...</p>;
+    if (loading) return <p>{t("transaction.table.loading")}</p>;
     if (error) return <p className="text-red-600">{error}</p>;
-    if (transactions.length === 0) return <p>Nenhuma despesa encontrada.</p>;
+    if (transactions.length === 0)
+        return <p>{t("transaction.table.notFound")}</p>;
 
     return (
         <div className="w-full">

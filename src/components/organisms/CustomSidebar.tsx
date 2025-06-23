@@ -128,48 +128,6 @@ export function CustomSidebar() {
                                         <DropdownMenuLabel>
                                             {t("sidebar.transactions")}
                                         </DropdownMenuLabel>
-                                        {/* <GenericDialog
-                                            open={open}
-                                            onOpenChange={setOpen}
-                                            trigger={
-                                                <DropdownMenuItem
-                                                    onSelect={(e) => {
-                                                        e.preventDefault();
-                                                        setType("expense");
-                                                    }}
-                                                >
-                                                    <BanknoteIcon />
-                                                    Despesa
-                                                </DropdownMenuItem>
-                                            }
-                                            title="Nova Despesa"
-                                            description="Cadastrar uma nova transação"
-                                        >
-                                            <ExpenseForm onAdd={addExpense} />
-                                        </GenericDialog>
-
-                                        <GenericDialog
-                                            open={open}
-                                            onOpenChange={setOpen}
-                                            trigger={
-                                                <DropdownMenuItem
-                                                    onSelect={(e) => {
-                                                        e.preventDefault();
-                                                        setType("income");
-                                                    }}
-                                                >
-                                                    <HandCoinsIcon />
-                                                    Ganho
-                                                </DropdownMenuItem>
-                                            }
-                                            title="Novo Ganho"
-                                            description="Cadastrar um novo ganho"
-                                        >
-                                            <TransactionForm
-                                                onAdd={addExpense}
-                                                onClose={() => setOpen(false)}
-                                            />
-                                        </GenericDialog> */}
                                         <>
                                             <DropdownMenuItem
                                                 onSelect={(e) => {
@@ -198,18 +156,30 @@ export function CustomSidebar() {
                                                 onOpenChange={setOpen}
                                                 title={
                                                     type === "expense"
-                                                        ? "Nova Despesa"
-                                                        : "Novo Ganho"
+                                                        ? t(
+                                                              "transaction.form.expense.title"
+                                                          )
+                                                        : t(
+                                                              "transaction.form.income.title"
+                                                          )
                                                 }
                                                 description={
                                                     type === "expense"
-                                                        ? "Cadastrar uma nova despesa"
-                                                        : "Cadastrar um novo ganho"
+                                                        ? t(
+                                                              "transaction.form.expense.description"
+                                                          )
+                                                        : t(
+                                                              "transaction.form.income.description"
+                                                          )
                                                 }
                                             >
                                                 <TransactionForm
-                                                    // type={type} // passa o tipo para o form
-                                                    onAdd={addTransaction} // ou `addTransaction`, se você tiver uma função genérica
+                                                    type={
+                                                        type === "expense"
+                                                            ? "EXPENSE"
+                                                            : "INCOME"
+                                                    }
+                                                    onAdd={addTransaction}
                                                     onClose={() =>
                                                         setOpen(false)
                                                     }
