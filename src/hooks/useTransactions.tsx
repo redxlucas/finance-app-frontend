@@ -13,6 +13,9 @@ export function useTransactions() {
         TransactionService.getAll()
             .then((result) => setTransactions(result.content))
             .catch((err) => {
+                if (process.env.NODE_ENV !== "production") {
+                    console.error(err);
+                }
                 setError("Erro ao buscar despesas");
             })
             .finally(() => setLoading(false));

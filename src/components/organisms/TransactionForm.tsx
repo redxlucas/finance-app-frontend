@@ -77,9 +77,7 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
     }, [type]);
 
     useEffect(() => {
-        getCategoriesByType(type)
-            .then(setCategories)
-            .catch((error) => {});
+        getCategoriesByType(type).then(setCategories);
     }, [type]);
 
     async function handleSubmit(data: TransactionInput) {
