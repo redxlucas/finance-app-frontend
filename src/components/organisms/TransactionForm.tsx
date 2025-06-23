@@ -51,6 +51,7 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
     const { t } = useTranslation();
     const { triggerUpdate } = useTransactionsUpdate();
     const [categories, setCategories] = useState<Category[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const form = useForm<TransactionInput>({
         resolver: zodResolver(transactionSchema),
@@ -84,6 +85,7 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
     }, [type]);
 
     async function handleSubmit(data: TransactionInput) {
+        setIsLoading(true);
         try {
             await onAdd(data);
             triggerUpdate();
@@ -92,6 +94,8 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
             onClose();
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -101,6 +105,7 @@ export default function TransactionForm({ onAdd, onClose, type }: Props) {
                 onSubmit={form.handleSubmit(handleSubmit)}
                 className="space-y-4"
                 submitLabel={t("transaction.form.submit")}
+                isLoading={isLoading}
             >
                 <FormField
                     control={form.control}

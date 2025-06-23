@@ -89,12 +89,25 @@ export function TransactionsTable({
             accessorKey: "transactionType",
             header: t("transaction.table.columns.transactionType"),
             cell: ({ row }) => {
-                const typeKey = row.original.transactionType ?? "";
+                const typeKey = (
+                    row.original.transactionType ?? ""
+                ).toLowerCase();
+
+                const bgClass = typeKey === "expense" ? "" : "";
+
                 return (
-                    <span>
-                        {t(
-                            `transaction.type.transactionType.${typeKey.toLowerCase()}`
-                        )}
+                    <span
+                        className={`
+                    inline-block
+                    px-2
+                    py-1
+                    rounded
+                    
+                    text-sm
+                    ${bgClass}
+                `}
+                    >
+                        {t(`transaction.type.transactionType.${typeKey}`)}
                     </span>
                 );
             },
@@ -102,7 +115,12 @@ export function TransactionsTable({
         {
             accessorKey: "category.name",
             header: t("transaction.table.columns.category"),
-            cell: ({ row }) => row.original.category?.name ?? "-",
+            cell: ({ row }) =>
+                t(
+                    `category.${row.original.category.name
+                        .toLowerCase()
+                        .replace(/\s+/g, "_")}`
+                ),
         },
         {
             accessorKey: "transactionDate",
