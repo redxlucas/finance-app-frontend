@@ -1,5 +1,5 @@
 {
-    "welcomeMessage": "Bem-vindo, {{user}}!",
+    "loading": "Adicionando...",
     "languages": {
         "pt": "Português",
         "en": "Inglês"
@@ -85,7 +85,7 @@
             "description": "Descrição",
             "transactionDate": "Data da Transação",
             "category": "Categoria",
-            "submit": "Salvar"
+            "submit": "Adicionar"
         },
         "table": {
             "columns": {

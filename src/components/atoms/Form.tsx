@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import { useTranslation } from "react-i18next";
 
 type Props = {
     title?: string;
@@ -18,6 +19,7 @@ export default function Form({
     className,
     isLoading = false,
 }: Props) {
+    const { t } = useTranslation();
     return (
         <form onSubmit={onSubmit} className={className}>
             {title && <h2 className="text-lg font-semibold">{title}</h2>}
@@ -48,7 +50,7 @@ export default function Form({
                                     d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
                                 ></path>
                             </svg>
-                            Loading...
+                            {t("loading")}
                         </>
                     ) : (
                         submitLabel
