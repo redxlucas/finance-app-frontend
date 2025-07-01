@@ -29,12 +29,9 @@ export function LoadingPage({
     }, [storageKey]);
 
     useEffect(() => {
-        if (hasAlreadyShown === false && loading) {
-            setShowLoading(true);
-        } else {
-            setShowLoading(false);
-        }
-    }, [loading]);
+        const shouldShowLoading = hasAlreadyShown === false && loading;
+        setShowLoading(shouldShowLoading);
+    }, [loading, hasAlreadyShown]);
 
     useEffect(() => {
         if (!loading && hasAlreadyShown !== null) {
