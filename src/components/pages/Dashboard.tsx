@@ -12,7 +12,7 @@ export default function Dashboard() {
     const { t } = useTranslation();
     const { data, loading } = useDashboardData();
 
-    const noTransaction = data?.chart?.length === 0;
+    const noTransaction = (data?.chart?.length ?? 0) === 0;
 
     return (
         <LoadingPage loading={loading}>
