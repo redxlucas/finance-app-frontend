@@ -14,7 +14,6 @@ export function LoadingPage({
     loading,
     children,
     splashDuration = 2000,
-    loadingDuration = 3000,
     storageKey = "hasSeenSplash",
 }: LoadingPageProps) {
     const [showLoading, setShowLoading] = useState(false);
@@ -30,29 +29,26 @@ export function LoadingPage({
     }, [storageKey]);
 
     useEffect(() => {
+        setShowLoading(loading);
+    }, [loading]);
+
+    useEffect(() => {
         if (!loading && hasAlreadyShown !== null) {
             if (!hasAlreadyShown) {
                 sessionStorage.setItem(storageKey, "true");
-                setShowLoading(true);
+                setShowSplash(true);
 
-                const loadingTimer = setTimeout(() => {
-                    setShowLoading(false);
-                    setShowSplash(true);
+                const splashTimer = setTimeout(() => {
+                    setShowSplash(false);
+                    setReady(true);
+                }, splashDuration);
 
-                    const splashTimer = setTimeout(() => {
-                        setShowSplash(false);
-                        setReady(true);
-                    }, splashDuration);
-
-                    return () => clearTimeout(splashTimer);
-                }, loadingDuration);
-
-                return () => clearTimeout(loadingTimer);
+                return () => clearTimeout(splashTimer);
             } else {
                 setReady(true);
             }
         }
-    }, [loading, hasAlreadyShown, splashDuration, loadingDuration, storageKey]);
+    }, [loading, hasAlreadyShown, splashDuration, storageKey]);
 
     return (
         <>
