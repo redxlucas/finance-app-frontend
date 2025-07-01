@@ -108,7 +108,7 @@ export function CustomSidebar() {
                 <SidebarGroup>
                     <SidebarGroupLabel className="mb-4 mt-2 text-primary flex items-center justify-center gap-2">
                         <Turtle className="!w-6 !h-6" />
-                        <span className="text-lg">Jabuti</span>
+                        <span className="text-lg select-none">Jabuti</span>
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
