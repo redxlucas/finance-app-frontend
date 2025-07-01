@@ -31,8 +31,9 @@ export function LoadingPage({
     useEffect(() => {
         if (hasAlreadyShown === false && loading) {
             setShowLoading(true);
+        } else {
+            setShowLoading(false);
         }
-        setShowLoading(false);
     }, [loading]);
 
     useEffect(() => {
