@@ -13,7 +13,6 @@ export default function Dashboard() {
     const { data, loading } = useDashboardData();
 
     const noTransaction = data?.chart?.length === 0;
-    console.log(data);
 
     return (
         <LoadingPage loading={loading}>
