@@ -10,15 +10,18 @@ export function useDashboardData() {
     const { updateCounter } = useTransactionsUpdate();
 
     useEffect(() => {
-        let timer: ReturnType<typeof setTimeout>;
         async function loadData() {
+            const start = Date.now();
             try {
                 const result = await getData();
                 setData(result);
-                timer = setTimeout(() => {
-                    setLoading(false);
-                }, 5000);
             } catch (err) {
+                const elapsed = Date.now() - start;
+                const minimumDelay = 500;
+                const remainingTime = Math.max(0, minimumDelay - elapsed);
+                setTimeout(() => {
+                    setLoading(false);
+                }, remainingTime);
                 setError("Failed to load dashboard data");
             } finally {
                 setLoading(false);
@@ -26,7 +29,6 @@ export function useDashboardData() {
         }
 
         loadData();
-        return () => clearTimeout(timer);
     }, [updateCounter]);
 
     return { data, loading, error };
