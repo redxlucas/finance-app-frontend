@@ -29,7 +29,10 @@ export function LoadingPage({
     }, [storageKey]);
 
     useEffect(() => {
-        setShowLoading(loading);
+        if (hasAlreadyShown === false && loading) {
+            setShowLoading(true);
+        }
+        setShowLoading(false);
     }, [loading]);
 
     useEffect(() => {

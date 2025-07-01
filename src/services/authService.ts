@@ -12,7 +12,10 @@ interface JwtPayload {
 
 export const AuthService = {
     getToken: () => localStorage.getItem(TOKEN_KEY),
-    logout: () => localStorage.removeItem(TOKEN_KEY),
+    logout: () => {
+        localStorage.removeItem(TOKEN_KEY);
+        sessionStorage.removeItem("hasSeenSplash");
+    },
     isTokenExpired: (): boolean => {
         const token = AuthService.getToken();
         if (!token) return true;
